@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class SudokuApp {
 
-    private static final int NO_OF_EMPTY_CELLS = 2;
+    private static final int NO_OF_EMPTY_CELLS = 20;
 
     public static void main(String[] args) {
         SudokuBoardCreator sbc = new SudokuBoardCreator();
@@ -83,7 +83,7 @@ public class SudokuApp {
                 }
 
                 if ("clear".equals(action)) {
-                    System.out.println(ss.handleClear(grid, row, col));
+                    System.out.println(ss.handleClear(grid, preFilledCells, row, col));
                     sbc.printTheGrid(grid);
                     continue;
                 }

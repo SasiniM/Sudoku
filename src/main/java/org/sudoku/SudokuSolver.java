@@ -12,8 +12,9 @@ public class SudokuSolver {
 
     private static final char[] columns = new char[]{'A', 'B', 'C', 'D', 'E', 'F','G','H','I'};
 
-    public String handleClear(int[][] gridPuzzle, char row, int col){
-        gridPuzzle[row][col] = 0;
+    public String handleClear(int[][] grid, List<int[]> preFilledCells, int row, int col){
+        grid[row][col] = 0;
+        String cellRef = String.valueOf(((char) columns[row]) + (col + 1));
         if (preFilledCells.contains(new int[]{row, col})) {
             return "Invalid clear. " + cellRef + " is pre-filled.";
         }
