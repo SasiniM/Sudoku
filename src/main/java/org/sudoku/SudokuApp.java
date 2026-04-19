@@ -15,7 +15,6 @@ public class SudokuApp {
         while (true) {
             int[][] grid = new int[9][9];
             System.out.println("Welcome to Sudoku!\n");
-            int hintCount = 0;
 
             // Create solved board first
             sbc.fillTheGrid(grid);
@@ -48,7 +47,6 @@ public class SudokuApp {
                 }
                 if (command.equalsIgnoreCase("hint")) {
                     System.out.println(ss.giveHint(grid, copiedOriginal));
-                    hintCount++;
                     continue;
                 }
 
@@ -85,11 +83,7 @@ public class SudokuApp {
                 }
 
                 if ("clear".equals(action)) {
-                    grid[row][col] = 0;
-                    if (preFilledCells.contains(new int[]{row, col})) {
-                        System.out.println("Invalid clear. " + cellRef + " is pre-filled.");
-                    }
-                    System.out.println(cellRef + " cleared.");
+                    System.out.println(ss.handleClear(grid, row, col));
                     sbc.printTheGrid(grid);
                     continue;
                 }

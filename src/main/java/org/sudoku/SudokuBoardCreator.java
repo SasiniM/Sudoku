@@ -35,9 +35,6 @@ public class SudokuBoardCreator {
             copy[i] = gridOriginal[i].clone();
         return copy;
     }
-    private void backupRemovingCells(){
-
-    }
 
     private List<Integer> randomDigitListCreator(){
         List<Integer> digits = new ArrayList<>(9);
