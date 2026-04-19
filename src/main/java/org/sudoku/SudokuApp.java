@@ -13,6 +13,7 @@ public class SudokuApp {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+
             int[][] grid = new int[9][9];
             System.out.println("Welcome to Sudoku!\n");
 
