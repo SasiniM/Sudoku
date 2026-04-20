@@ -159,7 +159,7 @@ Invalid move. B1 is pre-filled.
 If valid:
 
 ```
-Move accepted.
+B1 cleared.
 ```
 
 ---
@@ -200,7 +200,7 @@ Behavior:
 Example:
 
 ```
-Hint applied.
+Hint: Cell C8 = 1
 ```
 ---
 
