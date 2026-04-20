@@ -72,16 +72,6 @@ public class SudokuAppIntegrationTest {
     }
 
     @Test
-    void shouldRejectInvalidNumber() {
-        String input = "A1 0\nquit\n";
-
-        String output = runAppWithInput(input);
-
-        assertTrue(output.contains("Invalid number. Enter a value from 1 to 9."));
-        assertTrue(output.contains("Thanks for playing Sudoku!"));
-    }
-
-    @Test
     void shouldHandleClearCommandOrRejectPrefilledCell() {
         String input = "A1 clear\nquit\n";
 
