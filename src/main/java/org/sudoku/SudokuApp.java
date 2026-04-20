@@ -69,7 +69,7 @@ public class SudokuApp {
                 String action = parts[1].toLowerCase();
 
                 if (!SudokuValidation.isValidCellReference(cellRef)) {
-                    System.out.println("Invalid cell reference. Use format like A1, B3, I9.");
+                    System.out.println("Invalid cell reference. Cell reference should be within A1- I9.");
                     continue;
                 }
 
