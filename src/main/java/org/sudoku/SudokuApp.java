@@ -23,8 +23,6 @@ public class SudokuApp {
             // Keep a copy of solved board for hints / validation
             int[][] copiedOriginal = sbc.copyTheGrid(grid);
 
-            sbc.printTheGrid(copiedOriginal);
-
             // Remove numbers to create puzzle
             sbc.removeKDigits(grid, NO_OF_EMPTY_CELLS);
 
