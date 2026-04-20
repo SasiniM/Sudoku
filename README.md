@@ -200,7 +200,7 @@ Behavior:
 Example:
 
 ```
-Hint applied.
+Hint: Cell C8 = 1
 ```
 ---
 
