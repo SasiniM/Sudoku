@@ -77,7 +77,7 @@ public class SudokuBoardCreator {
             int col = random.nextInt(9);
 
             if (grid[row][col] != 0){
-                int backup = grid[row][col];
+                //int backup = grid[row][col];
                 grid[row][col] = 0;
                 k--;
             }
@@ -101,18 +101,6 @@ public class SudokuBoardCreator {
         for (int[] cell : predefined) {
             if (cell[0] == row && cell[1] == col) {
                 return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean giveHint(int[][] grid, int[][] solution, List<int[]> predefined) {
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                if (grid[row][col] == 0 && !isPredefinedCell(row, col, predefined)) {
-                    grid[row][col] = solution[row][col];
-                    return true;
-                }
             }
         }
         return false;
