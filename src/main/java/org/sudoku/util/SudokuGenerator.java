@@ -1,21 +1,22 @@
-package org.sudoku;
+package org.sudoku.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class SudokuBoardCreator {
-    SudokuValidation sv = new SudokuValidation();
+
+public class SudokuGenerator {
+
     private static final Random random = new Random();
 
-    public boolean fillTheGrid(int[][] grid) {
+    public static boolean fillTheGrid(int[][] grid) {
         for (int row = 0; row < 9; row++){
             for (int col = 0; col < 9; col++){
                 if (grid[row][col] == 0) {
                     List<Integer> numbers = randomDigitListCreator();
                     for (int num : numbers) {
-                        if (sv.isValid(grid, row, col, num)) {
+                        if (SudokuValidation.isValid(grid, row, col, num)) {
                             grid[row][col] = num;
                             if (fillTheGrid(grid))
                                 return true;
@@ -29,24 +30,15 @@ public class SudokuBoardCreator {
         return true;
     }
 
-    public int[][] copyTheGrid(int[][] gridOriginal){
+    public static int[][] copyTheGrid(int[][] gridOriginal) {
         int[][] copy = new int[9][9];
         for (int i = 0; i < 9; i++)
             copy[i] = gridOriginal[i].clone();
         return copy;
     }
 
-    private List<Integer> randomDigitListCreator(){
-        List<Integer> digits = new ArrayList<>(9);
-        for (int i = 1; i <= 9; i++) {
-            digits.add(i);
-        }
-        Collections.shuffle(digits);
-
-        return digits;
-    }
-
-    public void printTheGrid(int[][] grid){
+    public static void printTheGrid(int[][] grid, String title) {
+        System.out.println(title);
         char letter = 'A';
         for (int row=0; row<10; row++) {
             for (int col=0; col<10; col++) {
@@ -71,7 +63,8 @@ public class SudokuBoardCreator {
         }
     }
 
-    public void removeKDigits(int[][] grid, int k){
+
+    public static void removeKDigits(int[][] grid, int k){
         while(k>0) {
             int row = random.nextInt(9);
             int col = random.nextInt(9);
@@ -84,7 +77,7 @@ public class SudokuBoardCreator {
         }
     }
 
-    public List<int[]> findPreFilledCells(int[][] gridPuzzle){
+    public static List<int[]> findPreFilledCells(int[][] gridPuzzle){
         List<int[]> preFilledCells = new ArrayList<>();
 
         for (int row=0; row<9; row++){
@@ -97,13 +90,13 @@ public class SudokuBoardCreator {
         return preFilledCells;
     }
 
-    private static boolean isPredefinedCell(int row, int col, List<int[]> predefined) {
-        for (int[] cell : predefined) {
-            if (cell[0] == row && cell[1] == col) {
-                return true;
-            }
+    private static List<Integer> randomDigitListCreator(){
+        List<Integer> digits = new ArrayList<>(9);
+        for (int i = 1; i <= 9; i++) {
+            digits.add(i);
         }
-        return false;
-    }
+        Collections.shuffle(digits);
 
+        return digits;
+    }
 }

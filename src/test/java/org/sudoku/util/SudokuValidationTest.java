@@ -1,4 +1,4 @@
-package org.sudoku;
+package org.sudoku.util;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SudokuValidationTest {
 
@@ -67,7 +70,7 @@ public class SudokuValidationTest {
 
         String result = SudokuValidation.validateEntireGrid(grid);
 
-        assertNull(result);
+        assertEquals("No rule violations detected.", result);
     }
 
     @Test
@@ -224,4 +227,5 @@ public class SudokuValidationTest {
 
         assertFalse(result);
     }
+
 }
