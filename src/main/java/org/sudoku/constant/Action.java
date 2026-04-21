@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum Action {
-    INSERT_NUM("insert"), CLEAR_NUM("clear"), HINT("hint"), CHECK("check"), QUIT("quit");
+    MOVE_NUM("move"), CLEAR_NUM("clear"), HINT("hint"), CHECK("check"), QUIT("quit");
 
     final String code;
 

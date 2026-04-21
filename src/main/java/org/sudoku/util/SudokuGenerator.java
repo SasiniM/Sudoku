@@ -1,13 +1,13 @@
 package org.sudoku.util;
 
-import org.sudoku.SudokuValidation;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+
 public class SudokuGenerator {
+
     private static final Random random = new Random();
 
     public static boolean fillTheGrid(int[][] grid) {
@@ -30,14 +30,15 @@ public class SudokuGenerator {
         return true;
     }
 
-    public static int[][] copyTheGrid(int[][] gridOriginal){
+    public static int[][] copyTheGrid(int[][] gridOriginal) {
         int[][] copy = new int[9][9];
         for (int i = 0; i < 9; i++)
             copy[i] = gridOriginal[i].clone();
         return copy;
     }
 
-    public static void printTheGrid(int[][] grid){
+    public static void printTheGrid(int[][] grid, String title) {
+        System.out.println(title);
         char letter = 'A';
         for (int row=0; row<10; row++) {
             for (int col=0; col<10; col++) {
@@ -61,6 +62,7 @@ public class SudokuGenerator {
             System.out.println();
         }
     }
+
 
     public static void removeKDigits(int[][] grid, int k){
         while(k>0) {

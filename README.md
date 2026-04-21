@@ -34,16 +34,28 @@ sudoku/
 |
 |-- src/
 |   |-- main/java/org/sudoku/
+|   |   |-- constant
+|   |   |   |-- SudokuConstants.java
+|   |   |-- exception
+|   |   |   |-- SudokuException.java
+|   |   |-- game
+|   |   |   |-- SudokuGame.java
+|   |   |-- model
+|   |   |   |-- Command.java
+|   |   |-- util
+|   |   |   |-- CommandParser.java
+|   |   |   |-- SudokoGenerator.java
+|   |   |   |-- SudokuValidator.java
 |   |   |-- SudokuApp.java
-|   |   |-- SudokuBoardCreator.java
-|   |   |-- SudokuSolver.java
-|   |   |-- SudokuValidation.java
 |   |
 |   |-- test/java/org/sudoku/
+|   |   |-- game
+|   |   |   |-- SudokuGameTest.java
+|   |   |-- util
+|   |   |   |-- CommandParserTest.java
+|   |   |   |-- SudokoGeneratorTest.java
+|   |   |   |-- SudokuValidatorTest.java
 |       |-- SudokuAppIntegrationTest.java
-|       |-- SudokuBoardCreatorTest.java
-|       |-- SudokuSolverTest.java
-|       |-- SudokuValidationTest.java
 |-- target/
 |
 |-- pom.xml

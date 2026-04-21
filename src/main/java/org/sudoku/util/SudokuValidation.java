@@ -1,11 +1,18 @@
-package org.sudoku;
+package org.sudoku.util;
 
 import org.sudoku.model.Command;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Random;
 
 public class SudokuValidation {
 
+    /**
+     *
+     * Checking the validity of the number which is going to insert into the grid
+     * According to all three constraints (row, column and 3x3 subgrid)
+     */
     public static boolean isValid(int[][] board, int row, int column, int value) {
         return (rowConstraint(board, row, value)
                 && columnConstraint(board, column, value)
@@ -17,7 +24,6 @@ public class SudokuValidation {
      * Returns null if valid, otherwise returns first found error.
      */
     public static String validateEntireGrid(int[][] grid) {
-
         // Check rows
         for (int row = 0; row < 9; row++) {
             boolean[] seen = new boolean[10];
@@ -25,7 +31,7 @@ public class SudokuValidation {
                 int value = grid[row][col];
                 if (value != 0) {
                     if (seen[value]) {
-                        return "Number " + value + " already exists in Row " + (char) ('A' + row) + ".";
+                        return MessageFormat.format("Number {0} already exists in Row {1}.", value, (char)('A' + row));
                     }
                     seen[value] = true;
                 }
@@ -39,7 +45,7 @@ public class SudokuValidation {
                 int value = grid[row][col];
                 if (value != 0) {
                     if (seen[value]) {
-                        return "Number " + value + " already exists in Column " + (col + 1) + ".";
+                        return MessageFormat.format("Number {0} already exists in Column {1}.", value, col + 1);
                     }
                     seen[value] = true;
                 }
@@ -55,7 +61,7 @@ public class SudokuValidation {
                         int value = grid[row][col];
                         if (value != 0) {
                             if (seen[value]) {
-                                return "Number " + value + " already exists in the 3x3 subgrid.";
+                                return MessageFormat.format("Number {0} already exists in the 3x3 subgrid.", value);
                             }
                             seen[value] = true;
                         }
@@ -64,13 +70,20 @@ public class SudokuValidation {
             }
         }
 
-        return null;
+        return "No rule violations detected.";
     }
 
+    /**
+     * Check the validness of the cell reference coming as a player input
+     */
     public static boolean isValidCellReference(String cellRef) {
         return cellRef.matches("^[A-I][1-9]$");
     }
 
+    /**
+     * Player cannot change or clear any of the system pre-filled cell values
+     * Check whether the player input cell reference is a pre-filled or not
+     */
     public static boolean isPredefinedCell(int row, int col, List<int[]> predefined) {
         for (int[] cell : predefined) {
             if (cell[0] == row && cell[1] == col) {
@@ -89,6 +102,9 @@ public class SudokuValidation {
         return false;
     }
 
+    /**
+     * Check the completion of the grid correctly
+     */
     public static boolean isPuzzleComplete(int[][] grid, int[][] solution) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -100,6 +116,9 @@ public class SudokuValidation {
         return true;
     }
 
+    /**
+     * Check the validity of  value the only in the 3x3 subgrid
+     */
     private static boolean rowConstraint(int[][] board, int row, int value) {
         for (int column = 0; column < 9; column++) {
             if (board[row][column] == value) {
@@ -109,6 +128,9 @@ public class SudokuValidation {
         return true;
     }
 
+    /**
+     * Check the validity of  value th only in column
+     */
     private static boolean columnConstraint(int[][] board, int column, int value) {
         for (int row = 0; row < 9; row++) {
             if (board[row][column] == value) {
@@ -118,6 +140,9 @@ public class SudokuValidation {
         return true;
     }
 
+    /**
+     * Check the validity of  value th only in row
+     */
     public static boolean subgridConstraint(int[][] board, int row, int column, int value) {
         int subgridRowStart = (row / 3) * 3;
         int subgridRowEnd = subgridRowStart + 3;
