@@ -1,10 +1,8 @@
 package org.sudoku;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.regex.Pattern;
+import org.sudoku.model.Command;
+
+import java.util.*;
 
 public class SudokuSolver {
 
@@ -21,7 +19,12 @@ public class SudokuSolver {
         return cellRef + " cleared.";
     }
 
-    public String giveHint(int[][] gridPuzzle, int[][] copiedGrid){
+    public void handleClear(int[][] grid, Command command) {
+        grid[command.getRow()][command.getColumn()] = 0;
+        String cellRef = String.valueOf((columns[command.getRow()]) + "" + (command.getColumn() + 1));
+    }
+
+    /*public String giveHint(int[][] gridPuzzle, int[][] copiedGrid){
         List<int[]> empltyCells = new ArrayList<>();
         for (int row=0; row<9; row++){
             for (int col=0; col<9; col++){
@@ -42,9 +45,31 @@ public class SudokuSolver {
             return  "Hint: Cell " + ((char) columns[hintCell[0]]) + (hintCell[1] + 1) + " = " + hintValue;
 
         }
+    }*/
+
+    public Optional<Integer> giveHint(int[][] gridPuzzle, int[][] copiedGrid){
+        List<int[]> empltyCells = new ArrayList<>();
+        for (int row=0; row<9; row++){
+            for (int col=0; col<9; col++){
+                if (gridPuzzle[row][col]==0){
+                    empltyCells.add(new int[]{row, col});
+                }
+            }
+        }
+        if (empltyCells.isEmpty()){
+            return Optional.empty();
+        } else {
+            Random random = new Random();
+            int hint = random.nextInt(empltyCells.size());
+            int[] hintCell = empltyCells.get(hint);
+
+            int hintValue = copiedGrid[hintCell[0]][hintCell[1]];
+            //gridPuzzle[hintCell[0]][hintCell[1]] = hintValue;
+            return Optional.of(hintValue);
+            // return  "Hint: Cell " + ((char) columns[hintCell[0]]) + (hintCell[1] + 1) + " = " + hintValue;
+
+        }
     }
-
-
 
 
 }

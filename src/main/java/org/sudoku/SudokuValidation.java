@@ -1,5 +1,7 @@
 package org.sudoku;
 
+import org.sudoku.model.Command;
+
 import java.util.List;
 
 public class SudokuValidation {
@@ -72,6 +74,15 @@ public class SudokuValidation {
     public static boolean isPredefinedCell(int row, int col, List<int[]> predefined) {
         for (int[] cell : predefined) {
             if (cell[0] == row && cell[1] == col) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPredefinedCell(Command command, List<int[]> predefined) {
+        for (int[] cell : predefined) {
+            if (cell[0] == command.getRow() && cell[1] == command.getColumn()) {
                 return true;
             }
         }
